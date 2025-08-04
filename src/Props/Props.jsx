@@ -18,18 +18,4 @@ function Props(props) {
   );
 };
 
-Props.propTypes = {
-    ProductImage:PropTypes.string,
-    ProductName:PropTypes.string,
-    ProductDescription:PropTypes.string,
-    ProductPrice:PropTypes.number
-}
-
-Props.defaultProps = {
-    ProductImage: "No Image provided.",
-    ProductName: "No Product Name provided.",
-    ProductDescription: "No product description provided.",
-    ProductPrice: 0
-};
-
 export default Props;
