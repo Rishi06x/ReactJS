@@ -3,11 +3,17 @@
 // import prodPic1 from './assets/prod1.webp';
 // import prodPic2 from './assets/prod2.jpg';
 // import prodPic3 from './assets/prod3.jpeg';
-import ConditionalRendering from "./ConditionalRendering.jsx";
+// import ConditionalRendering from "./ConditionalRendering.jsx";
+import RenderList from "./RenderList.jsx";
 
 function App() {
+
+    const todo = [{task: 'Complete the Project', status:false},
+                {task: 'Practice React', status:true},
+                {task: 'Read a book', status:true}];
+
     return (
-        <ConditionalRendering/>
+        <RenderList items={todo}/>
     );
 }
 
