@@ -4,16 +4,13 @@
 // import prodPic2 from './assets/prod2.jpg';
 // import prodPic3 from './assets/prod3.jpeg';
 // import ConditionalRendering from "./ConditionalRendering.jsx";
-import RenderList from "./RenderList.jsx";
+// import RenderList from "./RenderList.jsx";
+import Counter from "./UseState/Counter.jsx";
 
 function App() {
 
-    const todo = [{task: 'Complete the Project', status:false},
-                {task: 'Practice React', status:true},
-                {task: 'Read a book', status:true}];
-
     return (
-        <RenderList items={todo}/>
+        <Counter/>
     );
 }
 
