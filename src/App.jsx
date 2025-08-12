@@ -5,12 +5,14 @@
 // import prodPic3 from './assets/prod3.jpeg';
 // import ConditionalRendering from "./ConditionalRendering.jsx";
 // import RenderList from "./RenderList.jsx";
-import Counter from "./UseState/Counter.jsx";
+// import Counter from "./UseState/Counter.jsx";
+// import Form from "./OnChange/Form.jsx"
+import ColorPicker from "./OnChange/ColorPicker";
 
 function App() {
 
     return (
-        <Counter/>
+        <ColorPicker/>
     );
 }
 
