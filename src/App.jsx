@@ -7,12 +7,11 @@
 // import RenderList from "./RenderList.jsx";
 // import Counter from "./UseState/Counter.jsx";
 // import Form from "./OnChange/Form.jsx"
-import ColorPicker from "./OnChange/ColorPicker";
-
+// import ColorPicker from "./OnChange/ColorPicker";
+import Demo from "./UseEffect/Demo.jsx";
 function App() {
-
     return (
-        <ColorPicker/>
+        <Demo/>
     );
 }
 
