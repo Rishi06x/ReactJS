@@ -9,17 +9,14 @@
 // import Form from "./OnChange/Form.jsx"
 // import ColorPicker from "./OnChange/ColorPicker";
 // import Demo from "./UseEffect/Demo.jsx";
-import Theme from "./useContext/Theme.jsx"
-import ThemeProvider from "./useContext/Theme.jsx";
+// import Theme from "./useContext/Theme.jsx"
+// import ThemeProvider from "./useContext/Theme.jsx";
+import Timer from "./useRef/Timer.jsx"
 
 function App() {
-        
+    
     return (
-        <ThemeProvider>
-            <div className="h-screen flex items-center justify-center">
-            <Theme/>
-            </div>
-        </ThemeProvider>
+        <Timer/>
     );
 }
 
