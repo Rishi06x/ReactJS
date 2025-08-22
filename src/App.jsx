@@ -11,12 +11,15 @@
 // import Demo from "./UseEffect/Demo.jsx";
 // import Theme from "./useContext/Theme.jsx"
 // import ThemeProvider from "./useContext/Theme.jsx";
-import Timer from "./useRef/Timer.jsx"
+// import Timer from "./useRef/Timer.jsx"
+import Todo from "./ToDo/Todo.jsx";
 
 function App() {
     
     return (
-        <Timer/>
+        <div className="h-screen flex items-center justify-center bg-gray-100"> 
+            <Todo/>
+        </div>
     );
 }
 
