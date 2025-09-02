@@ -12,14 +12,12 @@
 // import Theme from "./useContext/Theme.jsx"
 // import ThemeProvider from "./useContext/Theme.jsx";
 // import Timer from "./useRef/Timer.jsx"
-import Todo from "./ToDo/Todo.jsx";
-
+// import Todo from "./ToDo/Todo.jsx";
+import Counter from "./useMemo/Counter.jsx"
 function App() {
     
     return (
-        <div className="h-screen flex items-center justify-center bg-gray-100"> 
-            <Todo/>
-        </div>
+        <Counter/>
     );
 }
 
