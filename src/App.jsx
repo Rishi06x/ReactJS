@@ -13,11 +13,12 @@
 // import ThemeProvider from "./useContext/Theme.jsx";
 // import Timer from "./useRef/Timer.jsx"
 // import Todo from "./ToDo/Todo.jsx";
-import Counter from "./useMemo/Counter.jsx"
+// import Counter from "./useMemo/Counter.jsx"
+import Demo from "./useCallback/Demo.jsx"
 function App() {
     
     return (
-        <Counter/>
+        <Demo/>
     );
 }
 
