@@ -14,11 +14,12 @@
 // import Timer from "./useRef/Timer.jsx"
 // import Todo from "./ToDo/Todo.jsx";
 // import Counter from "./useMemo/Counter.jsx"
-import Demo from "./useCallback/Demo.jsx"
+// import Demo from "./useCallback/Demo.jsx"
+import Counter from "./CustomHooks/Counter.jsx"
 function App() {
     
     return (
-        <Demo/>
+        <Counter/>
     );
 }
 
