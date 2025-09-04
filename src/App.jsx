@@ -15,11 +15,12 @@
 // import Todo from "./ToDo/Todo.jsx";
 // import Counter from "./useMemo/Counter.jsx"
 // import Demo from "./useCallback/Demo.jsx"
-import Counter from "./CustomHooks/Counter.jsx"
+// import Counter from "./CustomHooks/Counter.jsx"
+import ImgGallery from "./ImageGallery/ImgGallery";
 function App() {
     
     return (
-        <Counter/>
+        <ImgGallery/>
     );
 }
 
