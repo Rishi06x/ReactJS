@@ -16,11 +16,11 @@
 // import Counter from "./useMemo/Counter.jsx"
 // import Demo from "./useCallback/Demo.jsx"
 // import Counter from "./CustomHooks/Counter.jsx"
-import ImgGallery from "./ImageGallery/ImgGallery";
+import ImgContainer from "./ImageGallery/ImgContainer";
 function App() {
     
     return (
-        <ImgGallery/>
+        <ImgContainer/>
     );
 }
 
