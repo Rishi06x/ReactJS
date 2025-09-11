@@ -4,6 +4,7 @@ import Search from "./Search";
 function ImgGallery() {
   const [query, setQuery] = useState("");  
   const [img, setImg] = useState([]);
+  const [selected, setSelected] = useState(null); // <-- NEW state for fullscreen image
 
   useEffect(() => {
     if (!query) return; 
@@ -14,7 +15,6 @@ function ImgGallery() {
       );
       const data = await res.json();
       setImg(data.results);
-
     };
 
     fetchImg();
@@ -25,14 +25,84 @@ function ImgGallery() {
   };
 
   return (
-    <div >
-      <Search onSearch={handleSearch}/>
+    <div>
+      <Search onSearch={handleSearch} />
 
-       <div className="image-grid lg:columns-3 md:columns-2 sm:columns-1 gap-4 p-4">
-        {img.map((photo,index) => (
-          <img key={index} src={photo.urls.small} alt={photo.alt_description} className="mb-4 w-full rounded-lg"/>
-        ))}
-      </div>
+      {/* If no image is selected show in grid */}
+      {!selected && (
+        <div className=" columns-2 md:columns-3  gap-4 p-4">
+          {img.map((photo, index) => (
+            <div 
+              key={index} 
+              className="relative mb-4 rounded-lg overflow-hidden shadow-lg group bg-white cursor-pointer"
+              onClick={() => setSelected(photo)} 
+            >
+              <img 
+                src={photo.urls.small} 
+                alt={photo.alt_description} 
+                className="w-full rounded-t-lg hover:opacity-90 transition-opacity duration-300"
+              />
+
+              {/* overlay with details */}
+              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex flex-col justify-center items-center text-white text-sm transition-opacity duration-300">
+                <p><strong>Format:</strong> JPG</p>
+                <p><strong>Size:</strong> {photo.width} × {photo.height}</p>
+                <p><strong>By:</strong> {photo.user.name}</p>
+
+                {/* Download button */}
+                <a 
+                  href={photo.links.download + "&force=true"} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="absolute top-2 right-2 bg-slate-500 text-white px-2 py-1 rounded-lg text-xs hover:bg-slate-600"
+                  onClick={(e) => e.stopPropagation()} 
+                >
+                  <img src="../src/assets/downloadIcon.png" alt="download" className="w-6"/>
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* If an image is clicked show in fullscreen */}
+      {selected && (
+        <div className="fixed inset-0 bg-black/90 flex flex-col justify-center items-center z-50 p-4">
+          {/* Image */}
+          <div className="relative">
+            <img
+              src={selected.urls.regular}
+              alt={selected.alt_description}
+              className="max-h-[80vh] max-w-[90vw] rounded-lg shadow-xl"
+            />
+
+            <div className="absolute inset-0 bg-black/60 opacity-0 hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-white text-sm">
+              <p><strong>Format:</strong> JPG</p>
+              <p><strong>Size:</strong> {selected.width} × {selected.height}</p>
+              <p><strong>By:</strong> {selected.user.name}</p>
+
+              {/* Download button */}
+              <a 
+                href={selected.links.download + "&force=true"} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="absolute top-2 right-2 bg-slate-500 text-white px-2 py-1 rounded-lg text-xs hover:bg-slate-600"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <img src="../src/assets/downloadIcon.png" alt="download" className="w-6"/>
+              </a>
+            </div>
+          </div>
+
+          {/* Close button */}
+          <button
+            onClick={() => setSelected(null)}
+            className="mt-4 bg-red-500 px-4 py-2 text-white rounded-lg hover:bg-red-600"
+          >
+            Close
+          </button>
+        </div>
+      )}
 
     </div>
   );
