@@ -4,32 +4,54 @@ import Search from "./Search";
 function ImgGallery() {
   const [query, setQuery] = useState("");  
   const [img, setImg] = useState([]);
-  const [selected, setSelected] = useState(null); // <-- NEW state for fullscreen image
+  const [selected, setSelected] = useState(null); 
+  const [loading, setLoading] = useState(false);
+
 
   useEffect(() => {
     if (!query) return; 
 
     const fetchImg = async () => {
+      setLoading(true); // start loader
+
+       const timeoutId = setTimeout(() => {
+      alert("Network issue: Request taking too long!");
+      setLoading(false);
+    }, 10000);
+
+    try {
       const res = await fetch(
         `https://api.unsplash.com/search/photos?query=${query}&page=1&per_page=12&client_id=S-q6Fwl80wYegRfb8SDrGTFGQyQFRN5GE109RQmhOs0`
       );
       const data = await res.json();
       setImg(data.results);
-    };
+    } catch (error) {
+      console.error("Error fetching images:", error);
+    } finally {
+      clearTimeout(timeoutId); // clear timeout if request finishes
+      setLoading(false); // stop loader
+    }
+  };
 
     fetchImg();
-  }, [query]);
+  }, [query]); // runs only when query changes
 
   const handleSearch = (newQuery) => {
     setQuery(newQuery);
   };
 
   return (
-    <div>
+    <div className="min-h-screen bg-gray-100 relative">
       <Search onSearch={handleSearch} />
 
+      {loading && (
+      <div className="p-4 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 bg-indigo-500 rounded-xl shadow-2xl shadow-gray-900">
+        <div className="animate-spin rounded-full h-10 w-10 border-b-4 border-gray-900"></div>
+      </div>
+    )}
+
       {/* If no image is selected show in grid */}
-      {!selected && (
+      {!selected && !loading &&(
         <div className=" columns-2 md:columns-3  gap-4 p-4">
           {img.map((photo, index) => (
             <div 
