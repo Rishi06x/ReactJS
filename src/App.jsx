@@ -16,12 +16,12 @@
 // import Counter from "./useMemo/Counter.jsx"
 // import Demo from "./useCallback/Demo.jsx"
 // import Counter from "./CustomHooks/Counter.jsx"
-// import ImgGallery from "./ImageGallery/ImgGallery";
-import ShoppingCart  from "./useReducer/ShoppingCart";
+import ImgGallery from "./ImageGallery/ImgGallery";
+// import ShoppingCart  from "./useReducer/ShoppingCart";
 function App() {
     
     return (
-        <ShoppingCart/>
+        <ImgGallery/>
     );
 }
 

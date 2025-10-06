@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Search({ onSearch }) {
-  const [text, setText] = useState("");
+  const [text, setText] = useState('nature');
 
   const handleSearch = () => {
     if (text.trim()) {
@@ -14,6 +14,10 @@ function Search({ onSearch }) {
       handleSearch();
     }
   };
+
+  useEffect(() => {
+    handleSearch();
+  }, []);
 
 
   return (

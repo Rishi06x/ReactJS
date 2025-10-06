@@ -6,6 +6,7 @@ function ImgGallery() {
   const [img, setImg] = useState([]);
   const [selected, setSelected] = useState(null); 
   const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
 
 
   useEffect(() => {
@@ -21,10 +22,15 @@ function ImgGallery() {
 
     try {
       const res = await fetch(
-        `https://api.unsplash.com/search/photos?query=${query}&page=1&per_page=12&client_id=S-q6Fwl80wYegRfb8SDrGTFGQyQFRN5GE109RQmhOs0`
+        `https://api.unsplash.com/search/photos?query=${query}&page=${page}&per_page=12&client_id=S-q6Fwl80wYegRfb8SDrGTFGQyQFRN5GE109RQmhOs0`
       );
       const data = await res.json();
-      setImg(data.results);
+      // setImg(data.results);
+       if (page === 1) {
+        setImg(data.results);
+      } else {
+        setImg((prev) => [...prev, ...data.results]);
+      }
     } catch (error) {
       console.error("Error fetching images:", error);
     } finally {
@@ -34,11 +40,19 @@ function ImgGallery() {
   };
 
     fetchImg();
-  }, [query]); // runs only when query changes
+  }, [query, page]); // runs only when query changes
 
-  const handleSearch = (newQuery) => {
-    setQuery(newQuery);
+  const handleSearch = (query) => {
+    setQuery(query);
+    setPage(1);
   };
+
+   const handleLoadMore = () => {
+    const nextPage = page + 1;
+    setPage(nextPage);
+    fetchImg(query, nextPage);
+  };
+
 
   return (
     <div className="min-h-screen bg-gray-100 relative">
@@ -124,6 +138,20 @@ function ImgGallery() {
             Close
           </button>
         </div>
+      )}
+
+       {/* Load more button */}
+      {img.length > 0 && !loading && (
+      <div className=" flex items-center justify-center bg-transparent">
+          <button
+          onClick={handleLoadMore}
+          disabled={loading}
+          className="m-4 px-4 py-2 bg-indigo-500 text-white rounded hover:bg-indigo-600 disabled:opacity-50"
+        >
+          Load More
+        </button>
+        </div>
+
       )}
 
     </div>
