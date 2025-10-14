@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import Search from "./Search";
+import { Heart } from "lucide-react";
+
 
 function ImgGallery() {
   const [query, setQuery] = useState("");  
@@ -7,6 +9,7 @@ function ImgGallery() {
   const [selected, setSelected] = useState(null); 
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
+  const [isFav, setIsFav] = useState(false);
 
 
   useEffect(() => {
@@ -53,6 +56,10 @@ function ImgGallery() {
     fetchImg(query, nextPage);
   };
 
+  const toggleFav = () => {
+    setIsFav((prev) => !prev);
+  };
+
 
   return (
     <div className="min-h-screen bg-gray-100 relative">
@@ -86,15 +93,28 @@ function ImgGallery() {
                 <p><strong>By:</strong> {photo.user.name}</p>
 
                 {/* Download button */}
-                <a 
-                  href={photo.links.download + "&force=true"} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="absolute top-2 right-2 bg-slate-500 text-white px-2 py-1 rounded-lg text-xs hover:bg-slate-600"
-                  onClick={(e) => e.stopPropagation()} 
+                <div className="flex justify-center items-center">
+                  <a 
+                    href={photo.links.download + "&force=true"} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="absolute top-2 right-2 p-2 rounded-full transition-colors duration-300 bg-gray-300 hover:bg-slate-200"
+                    onClick={(e) => e.stopPropagation()} 
+                  >
+                    <img src="../src/assets/downloadIcon.png" alt="download" className="w-5 h-5"/>
+                  </a>
+                  {/* favorite button */}
+                  <button
+                  onClick={toggleFav}
+                  className={`absolute top-2 right-16 p-2 rounded-full transition-colors duration-300 ${
+                    isFav ? "bg-red-500 text-white" : "bg-white/70 text-gray-700"
+                  }`}
                 >
-                  <img src="../src/assets/downloadIcon.png" alt="download" className="w-6"/>
-                </a>
+                  <Heart
+                    className={`w-5 h-5 ${isFav ? "fill-current" : ""}`}
+                  />
+                </button>
+              </div>
               </div>
             </div>
           ))}
@@ -122,11 +142,22 @@ function ImgGallery() {
                 href={selected.links.download + "&force=true"} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="absolute top-2 right-2 bg-slate-500 text-white px-2 py-1 rounded-lg text-xs hover:bg-slate-600"
+                className="absolute top-2 right-2 p-2 rounded-full transition-colors duration-300 bg-gray-300 hover:bg-slate-200"
                 onClick={(e) => e.stopPropagation()}
               >
                 <img src="../src/assets/downloadIcon.png" alt="download" className="w-6"/>
               </a>
+              {/* favorite button */}
+              <button
+                onClick={toggleFav}
+                className={`absolute top-3 right-16 p-2 rounded-full transition-colors duration-300 ${
+                  isFav ? "bg-red-500 text-white" : "bg-white/70 text-gray-700"
+                }`}
+              >
+                <Heart
+                  className={`w-5 h-5 ${isFav ? "fill-current" : ""}`}
+                />
+              </button>
             </div>
           </div>
 
