@@ -9,7 +9,7 @@ function ImgGallery() {
   const [selected, setSelected] = useState(null); 
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
-  const [isFav, setIsFav] = useState(false);
+  const [isFav, setIsFav] = useState([]);
 
 
   useEffect(() => {
@@ -56,8 +56,12 @@ function ImgGallery() {
     fetchImg(query, nextPage);
   };
 
-  const toggleFav = () => {
-    setIsFav((prev) => !prev);
+  const toggleFav = (photoId) => {
+      setIsFav((prev) =>
+      prev.includes(photoId)
+        ? prev.filter((id) => id !== photoId) // remove if already favorited
+        : [...prev, photoId] // add new favorite
+    );
   };
 
 
@@ -73,7 +77,7 @@ function ImgGallery() {
 
       {/* If no image is selected show in grid */}
       {!selected && !loading &&(
-        <div className=" columns-2 md:columns-3  gap-4 p-4">
+        <div className=" columns-2 md:columns-3  gap-4 p-4 flex-wrap">
           {img.map((photo, index) => (
             <div 
               key={index} 
@@ -83,6 +87,7 @@ function ImgGallery() {
               <img 
                 src={photo.urls.small} 
                 alt={photo.alt_description} 
+                loading="lazy"
                 className="w-full rounded-t-lg hover:opacity-90 transition-opacity duration-300"
               />
 
@@ -92,28 +97,30 @@ function ImgGallery() {
                 <p><strong>Size:</strong> {photo.width} × {photo.height}</p>
                 <p><strong>By:</strong> {photo.user.name}</p>
 
-                {/* Download button */}
-                <div className="flex justify-center items-center">
+                {/* Buttons */}
+                <div className="flex absolute top-2 right-2 gap-4 mt-2">
+                  {/* favorite button */}
+                  <button
+                  onClick={(e) => {e.stopPropagation(); // stop overlay clicks
+                                  toggleFav(photo.id);}}
+                  className={` p-2 rounded-full transition-colors duration-300 ${
+                    isFav.includes(photo.id) ? "bg-red-500 text-white" : "bg-white/70 text-gray-700"
+                  }`}
+                >
+                  <Heart
+                    className={`w-5 h-5 ${isFav.includes(photo.id) ? "fill-current" : ""}`}
+                  />
+                </button>
+                  {/* Download button */}
                   <a 
                     href={photo.links.download + "&force=true"} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="absolute top-2 right-2 p-2 rounded-full transition-colors duration-300 bg-gray-300 hover:bg-slate-200"
+                    className=" p-2 rounded-full transition-colors duration-300 bg-gray-300 hover:bg-slate-200"
                     onClick={(e) => e.stopPropagation()} 
                   >
                     <img src="../src/assets/downloadIcon.png" alt="download" className="w-5 h-5"/>
                   </a>
-                  {/* favorite button */}
-                  <button
-                  onClick={toggleFav}
-                  className={`absolute top-2 right-16 p-2 rounded-full transition-colors duration-300 ${
-                    isFav ? "bg-red-500 text-white" : "bg-white/70 text-gray-700"
-                  }`}
-                >
-                  <Heart
-                    className={`w-5 h-5 ${isFav ? "fill-current" : ""}`}
-                  />
-                </button>
               </div>
               </div>
             </div>
@@ -137,27 +144,30 @@ function ImgGallery() {
               <p><strong>Size:</strong> {selected.width} × {selected.height}</p>
               <p><strong>By:</strong> {selected.user.name}</p>
 
+              <div className="flex absolute top-2 right-2 gap-4 mt-2">
+              {/* favorite button */}
+              <button
+                onClick={(e) => {e.stopPropagation(); // stop overlay clicks
+                                toggleFav(selected.id);}}
+                className={`p-2 rounded-full transition-colors duration-300 ${
+                  isFav.includes(selected.id) ? "bg-red-500 text-white" : "bg-white/70 text-gray-700"
+                }`}
+              >
+                <Heart
+                  className={`w-5 h-5 ${isFav.includes(selected.id) ? "fill-current" : ""}`}
+                />
+              </button>
               {/* Download button */}
               <a 
                 href={selected.links.download + "&force=true"} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="absolute top-2 right-2 p-2 rounded-full transition-colors duration-300 bg-gray-300 hover:bg-slate-200"
+                className="p-2 rounded-full transition-colors duration-300 bg-gray-300 hover:bg-slate-200"
                 onClick={(e) => e.stopPropagation()}
               >
-                <img src="../src/assets/downloadIcon.png" alt="download" className="w-6"/>
+                <img src="../src/assets/downloadIcon.png" alt="download" className="w-5"/>
               </a>
-              {/* favorite button */}
-              <button
-                onClick={toggleFav}
-                className={`absolute top-3 right-16 p-2 rounded-full transition-colors duration-300 ${
-                  isFav ? "bg-red-500 text-white" : "bg-white/70 text-gray-700"
-                }`}
-              >
-                <Heart
-                  className={`w-5 h-5 ${isFav ? "fill-current" : ""}`}
-                />
-              </button>
+            </div>
             </div>
           </div>
 
