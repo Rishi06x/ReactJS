@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Search from "./Search";
-import { Heart } from "lucide-react";
+import { Heading2, Heart } from "lucide-react";
+import Favorites from "./Favorites";
 
 
 function ImgGallery() {
@@ -10,6 +11,8 @@ function ImgGallery() {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [isFav, setIsFav] = useState([]);
+  const [showFav, setShowFav] = useState(false);
+
 
 
   useEffect(() => {
@@ -68,6 +71,9 @@ function ImgGallery() {
   return (
     <div className="min-h-screen bg-gray-100 relative">
       <Search onSearch={handleSearch} />
+      <button onClick={() => setShowFav(!showFav)} className="absolute right-80 top-35 text-lg text-slate-200 cursor-pointer">Favorites </button>
+      {showFav ? <Favorites img={img} isFav={isFav} setSelected={selected}/> : null}
+      {/* </div> */}
 
       {loading && (
       <div className="p-4 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 bg-indigo-500 rounded-xl shadow-2xl shadow-gray-900">
@@ -195,6 +201,7 @@ function ImgGallery() {
 
       )}
 
+    
     </div>
   );
 }

@@ -21,7 +21,7 @@ function Search({ onSearch }) {
 
 
   return (
-    <div className="search-bar w-full h-52 gap-12 flex flex-col justify-center items-center bg-gradient-to-r from-indigo-500 to-pink-500 p-8">
+    <div className="search-bar relative w-full h-52 gap-12 flex flex-col justify-center items-center bg-gradient-to-r from-indigo-500 to-pink-500 p-8">
       <h1 className="text-5xl font-bold text-gray-100">Image Gallery</h1>
       <div className="w-full flex justify-center">
         <input
@@ -34,6 +34,10 @@ function Search({ onSearch }) {
         />
         <button onClick={handleSearch} className="p-2 border border-gray-300 rounded-r bg-indigo-500 xl:w-1/10 text-gray-100 hover:bg-indigo-600   ">Search</button>
       </div>
+      {/* <div className="absolute right-80 bottom-10">
+        <button className="text-lg text-slate-200">Favorites </button>
+      </div> */}
+
     </div>
   );
 }
