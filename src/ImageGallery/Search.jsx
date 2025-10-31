@@ -34,9 +34,6 @@ function Search({ onSearch }) {
         />
         <button onClick={handleSearch} className="p-2 border border-gray-300 rounded-r bg-indigo-500 xl:w-1/10 text-gray-100 hover:bg-indigo-600   ">Search</button>
       </div>
-      {/* <div className="absolute right-80 bottom-10">
-        <button className="text-lg text-slate-200">Favorites </button>
-      </div> */}
 
     </div>
   );

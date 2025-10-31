@@ -21,7 +21,7 @@ function ImgGallery() {
     const fetchImg = async () => {
       setLoading(true); // start loader
 
-       const timeoutId = setTimeout(() => {
+      const timeoutId = setTimeout(() => {
       alert("Network issue: Request taking too long!");
       setLoading(false);
     }, 10000);
