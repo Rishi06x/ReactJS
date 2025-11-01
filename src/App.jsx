@@ -16,13 +16,27 @@
 // import Counter from "./useMemo/Counter.jsx"
 // import Demo from "./useCallback/Demo.jsx"
 // import Counter from "./CustomHooks/Counter.jsx"
-import ImgGallery from "./ImageGallery/ImgGallery";
+// import ImgGallery from "./ImageGallery/ImgGallery";
 // import ShoppingCart  from "./useReducer/ShoppingCart";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./Routing/Navbar";
+import Home from "./Routing/Home";
+import About from "./Routing/About";
+
 function App() {
-    
-    return (
-        <ImgGallery/>
-    );
+  return (
+    <Router>
+      <div className="flex flex-col h-screen">
+        <Navbar />
+        <main className="flex-1 overflow-auto">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
+        </main>
+      </div>
+    </Router>
+  );
 }
 
 export default App;
