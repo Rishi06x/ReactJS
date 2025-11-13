@@ -22,6 +22,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./Routing/Navbar";
 import Home from "./Routing/Home";
 import About from "./Routing/About";
+import Cart from "./Routing/Cart";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
+            <Route path="/cart" element={<Cart />} />
           </Routes>
         </main>
       </div>
