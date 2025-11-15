@@ -23,6 +23,8 @@ import Navbar from "./Routing/Navbar";
 import Home from "./Routing/Home";
 import About from "./Routing/About";
 import Cart from "./Routing/Cart";
+import Feature from "./Routing/NestedRoute/feature";
+import New from "./Routing/NestedRoute/New";
 
 function App() {
   return (
@@ -31,7 +33,10 @@ function App() {
         <Navbar />
         <main className="flex-1 overflow-auto">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home />}>
+              <Route path="/Feature" element={<Feature/>}/>
+              <Route path="/New" element={<New/>}/>
+            </Route>
             <Route path="/about" element={<About />} />
             <Route path="/cart" element={<Cart />} />
           </Routes>
