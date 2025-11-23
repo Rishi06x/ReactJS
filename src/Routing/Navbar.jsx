@@ -16,6 +16,7 @@ function Navbar() {
       <nav>
         <ul className="flex justify-end pr-12 gap-4 p-4 bg-gray-800 text-white ">
         <NavLink style={navLinkStyles} to="/">Home</NavLink>
+        <NavLink style={navLinkStyles} to="/products">Products</NavLink>
         <NavLink style={navLinkStyles} to="/about">About</NavLink>
         <NavLink style={navLinkStyles} to="/contact">Contact</NavLink>
         </ul>
