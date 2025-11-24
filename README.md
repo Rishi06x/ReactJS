@@ -1,12 +1,28 @@
-# React + Vite
+# ReactJS — My Learning Journey
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository is where I upload whatever I learn in React, day by day.  
+Nothing fancy — just my notes, small experiments, and things I want to remember.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Why this repo exists
 
-## Expanding the ESLint configuration
+I wanted a simple place to track my progress while learning React.  
+Every time I learn something new, I push it here so I can look back and see how far I’ve come.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## What I’m learning (gradually)
+
+- Components  
+- Props and state  
+- Hooks  
+- Routing  
+- API calls  
+- Small projects to practice  
+
+I’m not rushing — just learning at my own pace.
+
+---
+
+If you’re reading this, thanks for checking out my learning repo :)
